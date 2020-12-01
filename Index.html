@@ -1,0 +1,96 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Description Area Component</title>   
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="wwwroot/css/site.css">
+</head>
+<body>
+    <div class="container-fluid" style="background-color: aquamarine;">
+        <h1 id="MyH1">Some text to edit</h1>
+            <div class="card about_background">           
+                <div id="description-Body-Id" class="card-body">                
+                    <div class="description-content" style="width: 600px;">
+                        <h3 class="about_heading">ABOUT THIS GAME</h3>
+                        <p class="feature-description main-description">Edit main description. Edit main description. Edit main description. Edit main description.Edit main description.Edit main description.
+                            Edit main description.Edit main description.
+                            Edit main description.Edit main description.Edit main description. 
+                            Edit main description. Edit main description. Edit main description. Edit main description.Edit main description.Edit main description. Edit main description.Edit main description. Edit main description.Edit main description.Edit main description. Edit main description. Edit main description. Edit main description. Edit main description.Edit main description.Edit main description. Edit main description.Edit main description. Edit main description.Edit main description.Edit main description. </p>
+                        <p class="feature-description" style="border-bottom: 1px solid; width: fit-content;">Key features: Use bootstrap collapse in here</p>
+                        /*Features*/
+                        <div id="feature-list">
+                            <div class="temp feature-1">   
+                                <img src="./remparts.gif" class="feature-img">
+                                <strong class="feature-description title">Feature 1 title</strong>
+                                <p class="feature-description description">Feature 1 description. Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem eveniet at iste, quasi exercitationem inventore deleniti atque quia eius ex voluptatibus placeat distinctio sit architecto eaque incidunt reiciendis unde aut.</p>
+                            </div>                 
+                            <br>
+                            <div class="temp feature-2">
+                                <img src="./remparts.gif" class="feature-img">
+                                <strong class="feature-description title">Feature 2 title</strong>
+                                <p class="feature-description description">Feature 2 description. Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem eveniet at iste, quasi exercitationem inventore deleniti atque quia eius ex voluptatibus placeat distinctio sit architecto eaque incidunt reiciendis unde aut.</p>
+                            </div>  
+                            <br>
+                        </div>
+                        <div id="collapse-TextArea-Id" class="collapse">                       
+                            <div id="confirm-feature" class="confirm">
+                                <p class="confirm-Creation">Confirm creation</p>
+                                <button id="confirm-button-id" class="confirm-button">Confirm</button>
+                                <button id="cancel-button-id" class="cancel-button">Cancel</button>
+                            </div>
+                            <div class="white-line-seperate"></div>
+                            <label id="label-image-input">
+                                <input type="file" id="image-input">
+                                <i>Image input</i>
+                            </label>                                               
+                            <br>
+                            <div id="image-file-name-id">File name...</div> 
+                            <div id="image-preview-area-id" class="image-preview-area">
+                                <img src="" alt="Image preview" class="image-preview">
+                                <span class="image-preview-default-text">Image preview</span>
+                            </div>                       
+                            <input type="text" id="new-title" placeholder="Feature Title">
+                            <textarea id="new-description-id" class="new-description">Edit...</textarea>
+                            <button id="add-feature-button">Add feature</button>
+                            <button id="cancel-feature-button">Cancel</button>
+                        </div>
+                        <button type="button" id="new-feature-button-id" class="btn btn-block" style="background-color: 538acf; color: whitesmoke;" data-toggle="collapse" data-target="#collapse-TextArea-Id" aria-expanded="false" aria-controls="collapseExample">New Feature</button>                     
+                        <div class="temp feature-3" id="feature3" style="position: relative;">                           
+                            <button class="image-buttons change-img">                          
+                                <div class="image-button-color change-img">
+                                    <div class="my-arrow"></div>
+                                    Change
+                                </div>                            
+                            </button>
+                            <button class="image-buttons delete-img">                          
+                                <div class="image-button-color delete-img">
+                                    <div class="my-arrow"></div>
+                                    Delete
+                                </div>                            
+                            </button>
+                            <button class="image-buttons swap-feature">                          
+                                <div class="image-button-color">
+                                    <div class="my-arrow"></div>
+                                    <div style="white-space: nowrap;">
+                                        Swap with feature
+                                    </div>
+                                </div>                            
+                            </button>
+                            <img src="./remparts.gif" class="feature-img">
+                            <strong class="feature-description title">Fast paced combat</strong>
+                            <p class="feature-description description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem eveniet at iste, quasi exercitationem inventore deleniti atque quia eius ex voluptatibus placeat distinctio sit architecto eaque incidunt reiciendis unde aut.</p>
+                            <div id="confirm-box" class="confirm">
+                                <p class="confirm-Creation">Confirm creation</p>
+                                <button id="confirm-button-id" class="confirm-button">Confirm</button>
+                                <button id="cancel-button-id" class="cancel-button">Cancel</button>
+                            </div>
+                        </div>
+                    </div> 
+                </div>                   
+            </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="wwwroot/js/gameDescription.js" type="module"></script>
+</body>
+</html>
