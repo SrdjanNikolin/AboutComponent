@@ -16,16 +16,17 @@ const imagePreview = imagePreviewArea.querySelector('.image-preview');
 const imagePreviewDefaultText = imagePreviewArea.querySelector('.image-preview-default-text');
 
 var collapseArea = $('#collapse-TextArea-Id');
-const addFeatureButton = document.getElementById('add-feature-button');
-var confirmDiv = document.getElementById('confirm-feature'); //need specific
+var addFeatureButton = document.getElementById('add-feature-button');
+var confirmFeatureDiv = document.getElementById('confirm-feature');
 var confirmButton = document.getElementById('confirm-button-id');
 var cancelButton = document.getElementById('cancel-button-id');
 var descriptionContent = document.querySelector(".description-content");
+var deleteFeatureDiv = document.getElementById('confirm-delete');
 
 var cancel = function Cancel()
 {
-    confirmDiv.style.display = 'none';
-    document.querySelectorAll('.description-content > *:not(#collapse-TextArea-Id)').forEach(function AddFilter(el, key) {
+    confirmFeatureDiv.style.display = 'none';
+    document.querySelectorAll('.description-content > *:not(#collapse-TextArea-Id)').forEach(function AddFilter(el) {
         el.style.filter = "none";
     });
     descriptionBody.style.pointerEvents = 'auto';
@@ -92,55 +93,42 @@ var newFeature = (function ConstructNewDOM()
     return CreateElement;
 })();
 
-function DisplayConfirmBox(ev)
-{
-    // var newConfirm = CreateConfirmBox();
-    // ev.target.closest('.temp').appendChild(newConfirm);
-    var confirmBox = ev.target.closest('.temp').querySelector('.confirm');
-    descriptionBody.style.pointerEvents = 'none';
-    // document.querySelectorAll(`.description-content:not(.feature-3)`).classList.toggle('blurAllExcept');
-    var myob1 = document.querySelectorAll('.description-content:not(.feature-3)');
-    // descriptionContent.classList.toggle('blurAllExcept');
-    // confirmBox.classList.toggle('blurAllExcept');  
-    confirmBox.style.display = 'block';
-    confirmBox.style.pointerEvents = 'auto';
-}
-
-function ShowNewFeatureConfirm()
+function DisplayConfirmBox(currentFeature, currentConfirmBox)
 {
     descriptionBody.style.pointerEvents = 'none';
-    document.querySelectorAll('.description-content > *:not(#collapse-TextArea-Id)').forEach(function AddFilter(el, key) {
+    document.querySelectorAll(`.description-content > *:not(#${currentFeature.id})`).forEach(function AddFilter(el) {
         el.style.filter = "blur(2px) grayscale(70%)";
     });
-    confirmDiv.style.display = 'block';
-    confirmDiv.style.pointerEvents = 'auto';
+    currentConfirmBox.style.display = 'block';
+    currentConfirmBox.style.pointerEvents = 'auto';
 }
 
-var newConfirmBox = (function CreateConfirmBox()
-{
-    var confirmBox = document.createElement("div");
-    var text = document.createElement("p");
-    var confirmButton = document.createElement("button");
-    var cancelButton = document.createElement("button");
-    confirmBox.id = "confirm-box";
-    confirmBox.classList.add("confirm");
-    text.classList.add("confirm-Creation");
-    text.innerText = "Confirm creation v2";
-    confirmButton.id = "confirm-Button-id";
-    confirmButton.classList.add("confirm-Button");
-    confirmButton.innerText = "Confirm";
-    cancelButton.id = "cancel-button-id";
-    cancelButton.classList.add("cancel-button");
-    cancelButton.innerText = "Cancel";
-    confirmBox.append(text, confirmButton, cancelButton);
+// not needed
+// var newConfirmBox = (function CreateConfirmBox()
+// {
+//     var confirmBox = document.createElement("div");
+//     var text = document.createElement("p");
+//     var confirmButton = document.createElement("button");
+//     var cancelButton = document.createElement("button");
+//     confirmBox.id = "confirm-box";
+//     confirmBox.classList.add("confirm");
+//     text.classList.add("confirm-Creation");
+//     text.innerText = "Confirm creation v2";
+//     confirmButton.id = "confirm-Button-id";
+//     confirmButton.classList.add("confirm-Button");
+//     confirmButton.innerText = "Confirm";
+//     cancelButton.id = "cancel-button-id";
+//     cancelButton.classList.add("cancel-button");
+//     cancelButton.innerText = "Cancel";
+//     confirmBox.append(text, confirmButton, cancelButton);
 
-    function returnConfirm()
-    {
-        return confirmBox;
-    }
+//     function returnConfirm()
+//     {
+//         return confirmBox;
+//     }
     
-    return returnConfirm;
-})();
+//     return returnConfirm;
+// })();
 
 function CreateTextArea(innerText = 'Edit field', targetHeight)
 {
@@ -186,6 +174,16 @@ function UpdateFeature(featureKey, currentElement, newValue)
         description.mainDescription = newValue;
     }
     console.log(description.Features.entries());           
+}
+
+function DeleteFeature(ev)
+{
+    //ne treba mi novi confirmbox, imacu samo jedan i pomeracu ga svuda
+    // var currentConfirm = newConfirmBox();
+    var currentFeature = ev.target.closest('.temp');
+    currentFeature.append(deleteFeatureDiv);
+
+    DisplayConfirmBox(currentFeature, deleteFeatureDiv);
 }
 
 function ChangeDescription(ev)
@@ -279,14 +277,14 @@ descriptionBody.addEventListener('click', function UpdateCurrentFeature(ev)
     if(ev.target.classList.contains('feature-description'))
     {
         ChangeDescription(ev);
-    }else if(ev.target.classList.contains('change-img'))
+    }else if(ev.target.classList.contains('change-img')) //update image
     {
         ChangeImage(ev);
-    }else if(ev.target.classList.contains('delete-img'))
+    }else if(ev.target.classList.contains('delete-img')) //delete feature
     {
         //work on this next... 28/11/2020
         //da vidim kako/kad dodati evente za confirm
-        DisplayConfirmBox(ev);
+        DeleteFeature(ev);   
         // alert('howdy');
     }            
 });
@@ -333,9 +331,9 @@ collapseArea.on('show.bs.collapse', function CollapseArea()
     })}, 500);
 })
 
-addFeatureButton.addEventListener('click', function AddNewFeature()
+addFeatureButton.addEventListener('click', function AddNewFeature(ev)
 {
-    ShowNewFeatureConfirm();
+    DisplayConfirmBox(ev.target.closest('.collapse'), confirmFeatureDiv);
 })
 
 // 1. Add ability to swap feature positions. Example switch feature 1 with feature 3. (Have to switch the data and display.) (yellow button)
