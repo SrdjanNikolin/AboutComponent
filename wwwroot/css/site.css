@@ -165,7 +165,7 @@ button:focus {
     width: 80px;
 }
 
-.cancel-Button
+.cancel-button
 {
     float: right;
     margin-right: 40px;
@@ -184,12 +184,18 @@ button:focus {
     padding: 0;
 }
 
-.image-buttons.delete-img {
+.image-buttons.change-feature {
+    white-space: nowrap;
+}
+
+.image-buttons.delete-feature {
     top: 15%;
+    white-space: nowrap;
 }
 
 .image-buttons.swap-feature {
     top: 30%;
+    white-space: nowrap;
 }
 
 .image-button-color {
@@ -207,13 +213,13 @@ button:focus {
     transition: width 0.4s, background 0.4s, color 0.4s;
 }
 
-.image-buttons.change-img:hover > .image-button-color {
+.image-buttons.change-feature:hover > .image-button-color {
     width: 100%;
     background: rgba(51, 76, 107, 1);
     color: #acb2b8;
 }
 
-.image-buttons.delete-img:hover > .image-button-color {
+.image-buttons.delete-feature:hover > .image-button-color {
     width: 100%;
     background: rgba(51, 76, 107, 1);
     color: red;
@@ -235,7 +241,7 @@ button:focus {
     transform: rotate(135deg);
 }
 
-.image-buttons.delete-img .my-arrow {   
+.image-buttons.delete-feature .my-arrow {   
     border: solid red;
     border-width: 0 7px 7px 0;
 }
@@ -243,4 +249,57 @@ button:focus {
 .image-buttons.swap-feature .my-arrow {   
     border: solid yellow;
     border-width: 0 7px 7px 0;
+}
+
+.fa-delete-tip {
+    position: relative;
+    font-size: large;
+    color: red;
+}
+
+.fa-swap-tip {
+    position: relative;
+    font-size: large;
+    color: rgb(194, 194, 14);
+}
+
+.fa-upload-tip {
+    position: relative;
+    font-size: large;
+}
+.mytooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: #c6d4df;
+    color: black;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    font-weight: normal;
+    box-shadow: 2px 2px 8px black;
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    width: 120px;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -60px;
+
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.mytooltip:hover {
+    cursor: pointer;
+}
+
+.mytooltip:hover .tooltiptext{
+    visibility: visible;
+    opacity: 0.9;
+}
+
+/* Font awesome styles */
+
+.fa-file-image{
+    color: green;
 }

@@ -17,43 +17,29 @@ const imagePreviewDefaultText = imagePreviewArea.querySelector('.image-preview-d
 
 var collapseArea = $('#collapse-TextArea-Id');
 var addFeatureButton = document.getElementById('add-feature-button');
-var confirmFeatureDiv = document.getElementById('confirm-feature');
-var confirmButton = document.getElementById('confirm-button-id');
-var cancelButton = document.getElementById('cancel-button-id');
-var descriptionContent = document.querySelector(".description-content");
+var addFeatureConfirmDiv = document.getElementById('confirm-feature');
+var confirmCreationButton = document.getElementById('confirm-button-id');
+var abortCreationButton = document.getElementById('abort-button-id');
 var deleteFeatureDiv = document.getElementById('confirm-delete');
-
-var cancel = function Cancel()
-{
-    confirmFeatureDiv.style.display = 'none';
-    document.querySelectorAll('.description-content > *:not(#collapse-TextArea-Id)').forEach(function AddFilter(el) {
-        el.style.filter = "none";
-    });
-    descriptionBody.style.pointerEvents = 'auto';
-}
+var deleteButton = document.getElementById('delete-button-id');
+var cancelDeleteButton = document.getElementById('cancel-delete-button-id');
 
 function CreateFeatureButtons(type)
 {
     var button = document.createElement('button');
     var buttonColor = document.createElement('div');
     var arrow = document.createElement('div');
-    if(type == 'swap')
-    {
-        button.classList.add('image-buttons', `${type}-feature`)
-        buttonColor.innerText = "Swap with feature";
-    }else
-    {
-        button.classList.add('image-buttons', `${type}-img`)
-        buttonColor.innerText = type;
-    }  
-    buttonColor.classList.add('image-button-color');
+    if(type == 'swap') { buttonColor.innerText = "Swap features"; }else
+    { buttonColor.innerText = type; }
+    button.classList.add('image-buttons', `${type}-feature`)
+    buttonColor.classList.add('image-button-color', `${type}-feature`);  
     arrow.classList.add('my-arrow');
     button.appendChild(buttonColor);
     button.lastChild.appendChild(arrow);
     return button;
 }
 
-var newFeature = (function ConstructNewDOM()
+var newFeature = (function()
 {
     var getFeatureListLength = document.getElementById('feature-list').querySelectorAll('.temp').length;
 
@@ -93,42 +79,32 @@ var newFeature = (function ConstructNewDOM()
     return CreateElement;
 })();
 
+//DisplayConfirmBox and HideConfirmBox are pretty janky, should come back to this.
 function DisplayConfirmBox(currentFeature, currentConfirmBox)
 {
     descriptionBody.style.pointerEvents = 'none';
-    document.querySelectorAll(`.description-content > *:not(#${currentFeature.id})`).forEach(function AddFilter(el) {
-        el.style.filter = "blur(2px) grayscale(70%)";
-    });
+    if(currentConfirmBox == addFeatureConfirmDiv)
+    {
+        document.querySelectorAll(`.description-content > *:not(#${currentFeature.id})`).forEach(el => {el.style.filter = "blur(2px) grayscale(70%)";});
+    }else
+    {
+        document.querySelectorAll(`.description-content > *:not(#feature-list)`).forEach(el => {el.style.filter = "blur(2px) grayscale(70%)";});
+        document.querySelectorAll(`#feature-list > *:not(#${currentFeature.id})`).forEach(el => {el.style.filter = "blur(2px) grayscale(70%)";});
+    }
     currentConfirmBox.style.display = 'block';
     currentConfirmBox.style.pointerEvents = 'auto';
 }
 
-// not needed
-// var newConfirmBox = (function CreateConfirmBox()
-// {
-//     var confirmBox = document.createElement("div");
-//     var text = document.createElement("p");
-//     var confirmButton = document.createElement("button");
-//     var cancelButton = document.createElement("button");
-//     confirmBox.id = "confirm-box";
-//     confirmBox.classList.add("confirm");
-//     text.classList.add("confirm-Creation");
-//     text.innerText = "Confirm creation v2";
-//     confirmButton.id = "confirm-Button-id";
-//     confirmButton.classList.add("confirm-Button");
-//     confirmButton.innerText = "Confirm";
-//     cancelButton.id = "cancel-button-id";
-//     cancelButton.classList.add("cancel-button");
-//     cancelButton.innerText = "Cancel";
-//     confirmBox.append(text, confirmButton, cancelButton);
-
-//     function returnConfirm()
-//     {
-//         return confirmBox;
-//     }
-    
-//     return returnConfirm;
-// })();
+function HideConfirmBox(currentConfirmBox)
+{
+    currentConfirmBox.style.display = 'none';
+    descriptionBody.style.pointerEvents = 'auto';
+    document.querySelectorAll('.description-content > *').forEach(el => {el.style.filter = "none";});
+    if(currentConfirmBox != addFeatureConfirmDiv) 
+    { 
+        document.querySelectorAll(`#feature-list > *`).forEach(el => {el.style.filter = "none";});
+    }
+}
 
 function CreateTextArea(innerText = 'Edit field', targetHeight)
 {
@@ -248,7 +224,7 @@ function ChangeImage(ev)
     newImageInput.click();
 }
 
-confirmButton.addEventListener('click', function CreateFeature()
+confirmCreationButton.addEventListener('click', function CreateFeature()
 {
     var featureObject = {};
     if (imagePreview.getAttribute('src') != '') {
@@ -266,21 +242,23 @@ confirmButton.addEventListener('click', function CreateFeature()
     document.getElementById('feature-list').appendChild(feature);
     description.Features.set(feature.id, featureObject);  
     alert('confirmed');
-    cancel();
+    HideConfirmBox(addFeatureConfirmDiv);
     console.log(description.Features.entries());
 });
 
-cancelButton.addEventListener('click', cancel);
+abortCreationButton.addEventListener('click', () => HideConfirmBox(addFeatureConfirmDiv));
+
+cancelDeleteButton.addEventListener('click', () => HideConfirmBox(deleteFeatureDiv));
 
 descriptionBody.addEventListener('click', function UpdateCurrentFeature(ev)
 {
     if(ev.target.classList.contains('feature-description'))
     {
         ChangeDescription(ev);
-    }else if(ev.target.classList.contains('change-img')) //update image
+    }else if(ev.target.classList.contains('change-feature')) //update image
     {
         ChangeImage(ev);
-    }else if(ev.target.classList.contains('delete-img')) //delete feature
+    }else if(ev.target.classList.contains('delete-feature')) //delete feature
     {
         //work on this next... 28/11/2020
         //da vidim kako/kad dodati evente za confirm
@@ -331,10 +309,7 @@ collapseArea.on('show.bs.collapse', function CollapseArea()
     })}, 500);
 })
 
-addFeatureButton.addEventListener('click', function AddNewFeature(ev)
-{
-    DisplayConfirmBox(ev.target.closest('.collapse'), confirmFeatureDiv);
-})
+addFeatureButton.addEventListener('click', (ev) => DisplayConfirmBox(ev.target.closest('.collapse'), addFeatureConfirmDiv));
 
 // 1. Add ability to swap feature positions. Example switch feature 1 with feature 3. (Have to switch the data and display.) (yellow button)
 

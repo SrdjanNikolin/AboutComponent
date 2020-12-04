@@ -4,6 +4,7 @@
     <title>Description Area Component</title>   
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="wwwroot/css/site.css">
+    <script src="https://kit.fontawesome.com/f35b1fe633.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="container-fluid" style="background-color: aquamarine;">
@@ -16,7 +17,7 @@
                             Edit main description.Edit main description.
                             Edit main description.Edit main description.Edit main description. 
                             Edit main description. Edit main description. Edit main description. Edit main description.Edit main description.Edit main description. Edit main description.Edit main description. Edit main description.Edit main description.Edit main description. Edit main description. Edit main description. Edit main description. Edit main description.Edit main description.Edit main description. Edit main description.Edit main description. Edit main description.Edit main description.Edit main description. </p>
-                        <p class="feature-description" style="border-bottom: 1px solid; width: fit-content;">Key features: Use bootstrap collapse in here</p>
+                        <p class="feature-description" style="border-bottom: 1px solid; width: fit-content;">Key features: collapse here</p>
                         /*Features*/
                         <div id="feature-list">
                             <div id="confirm-delete" class="confirm">
@@ -31,8 +32,17 @@
                             </div>                 
                             <br>
                             <div class="temp feature-2">
-                                <img src="./wwwroot/Images/remparts.gif" class="feature-img">
+                                <!-- <img src="./wwwroot/Images/remparts.gif" class="feature-img"> -->
                                 <strong class="feature-description title">Feature 2 title</strong>
+                                <span class="far fa-trash-alt fa-delete-tip mytooltip">
+                                    <span class="tooltiptext">Delete</span>
+                                </span>
+                                <span class="fas fa-exchange-alt fa-swap-tip mytooltip">
+                                    <span class="tooltiptext">Swap features</span>
+                                </span>
+                                <span class="far fa-file-image fa-upload-tip mytooltip">
+                                    <span class="tooltiptext">Upload image</span>
+                                </span>
                                 <p class="feature-description description">Feature 2 description. Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem eveniet at iste, quasi exercitationem inventore deleniti atque quia eius ex voluptatibus placeat distinctio sit architecto eaque incidunt reiciendis unde aut.</p>
                             </div>  
                             <br>
@@ -41,7 +51,7 @@
                             <div id="confirm-feature" class="confirm">
                                 <p class="confirm-Creation">Confirm creation</p>
                                 <button id="confirm-button-id" class="confirm-button">Confirm</button>
-                                <button id="cancel-button-id" class="cancel-button">Cancel</button>
+                                <button id="abort-button-id" class="cancel-button">Abort</button>
                             </div>
                             <div class="white-line-seperate"></div>
                             <label id="label-image-input">
@@ -61,24 +71,22 @@
                         </div>
                         <button type="button" id="new-feature-button-id" class="btn btn-block" style="background-color: 538acf; color: whitesmoke;" data-toggle="collapse" data-target="#collapse-TextArea-Id" aria-expanded="false" aria-controls="collapseExample">New Feature</button>                     
                         <div class="temp feature-3" id="feature3" style="position: relative;">                           
-                            <button class="image-buttons change-img">                          
-                                <div class="image-button-color change-img">
+                            <button class="image-buttons change-feature">                          
+                                <div class="image-button-color change-feature">
                                     <div class="my-arrow"></div>
                                     Change
                                 </div>                            
                             </button>
-                            <button class="image-buttons delete-img">                          
-                                <div class="image-button-color delete-img">
+                            <button class="image-buttons delete-feature">                          
+                                <div class="image-button-color delete-feature">
                                     <div class="my-arrow"></div>
                                     Delete
                                 </div>                            
                             </button>
                             <button class="image-buttons swap-feature">                          
-                                <div class="image-button-color">
+                                <div class="image-button-color swap-feature">
                                     <div class="my-arrow"></div>
-                                    <div style="white-space: nowrap;">
                                         Swap with feature
-                                    </div>
                                 </div>                            
                             </button>
                             <img src="./wwwroot/Images/remparts.gif" class="feature-img">
