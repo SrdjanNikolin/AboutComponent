@@ -10,10 +10,10 @@ description.Features.set('feature3', testobj1);
 // description.Features.set('feature-2', testobj2);
 
 var descriptionBody = document.getElementById('description-Body-Id');       
-const imageInput = document.getElementById('image-input');
-const imagePreviewArea = document.getElementById('image-preview-area-id');
-const imagePreview = imagePreviewArea.querySelector('.image-preview');
-const imagePreviewDefaultText = imagePreviewArea.querySelector('.image-preview-default-text');
+var imageInput = document.getElementById('image-input');
+var imagePreviewArea = document.getElementById('image-preview-area-id');
+var imagePreview = imagePreviewArea.querySelector('.image-preview');
+var imagePreviewDefaultText = imagePreviewArea.querySelector('.image-preview-default-text');
 
 var collapseArea = $('#collapse-TextArea-Id');
 var addFeatureButton = document.getElementById('add-feature-button');
@@ -23,21 +23,52 @@ var abortCreationButton = document.getElementById('abort-button-id');
 var deleteFeatureDiv = document.getElementById('confirm-delete');
 var deleteButton = document.getElementById('delete-button-id');
 var cancelDeleteButton = document.getElementById('cancel-delete-button-id');
+var myheading = document.getElementById('aboutheading');
 
-function CreateFeatureButtons(type)
+//for easy testing
+document.getElementById('MyH1').addEventListener('click', ()=> {
+    document.querySelector('.section').classList.toggle('collapse');
+})
+
+function CreateImageButtons()
 {
-    var button = document.createElement('button');
-    var buttonColor = document.createElement('div');
-    var arrow = document.createElement('div');
-    if(type == 'swap') { buttonColor.innerText = "Swap features"; }else
-    { buttonColor.innerText = type; }
-    button.classList.add('image-buttons', `${type}-feature`)
-    buttonColor.classList.add('image-button-color', `${type}-feature`);  
-    arrow.classList.add('my-arrow');
-    button.appendChild(buttonColor);
-    button.lastChild.appendChild(arrow);
-    return button;
+    var buttonTypes = ['change', 'delete', 'swap'];
+    var buttons = {};
+    buttonTypes.forEach((val) => {
+        let button = document.createElement('button');
+        let buttonColor = document.createElement('div');
+        let arrow = document.createElement('div');
+        button.classList.add('image-buttons', `${val}-feature`)
+        buttonColor.innerText = val;
+        buttonColor.classList.add('image-button-color', `${val}-feature`);
+        arrow.classList.add('my-arrow');
+        button.appendChild(buttonColor);
+        button.lastChild.appendChild(arrow);
+        buttons[val] = button; 
+    })
+    return buttons;
 }
+
+function CreateButtonsWithoutImage()
+{
+    var buttonTypes = ['Delete', 'Swap', 'Upload'];
+    var buttons = {};
+    buttonTypes.forEach((val) => {
+        // let tooltip = document.createElement('span');
+        // let tooltipText = document.createElement('span');
+        buttons[val] = document.createElement('span');
+        buttons[val].appendChild(document.createElement('span'));
+        buttons[val].firstChild.classList.add('tooltiptext');  
+        buttons[val].firstChild.innerText = val;     
+        // tooltip.classList.add('far fa-trash-alt fa-delete-tip mytooltip')
+    })
+    buttons.Delete.classList.add('far', 'fa-trash-alt', 'fa-delete-tip', 'mytooltip');
+    buttons.Swap.classList.add('fas', 'fa-exchange-alt', 'fa-swap-tip', 'mytooltip');
+    buttons.Upload.classList.add('far', 'fa-file-image', 'fa-upload-tip', 'mytooltip');
+    return buttons;
+}
+//testing purpose
+myheading.addEventListener('click', function() {CreateButtonsWithoutImage();});
 
 var newFeature = (function()
 {
@@ -51,28 +82,36 @@ var newFeature = (function()
         featureDiv.style.position = "relative";
         featureDiv.id = `feature-${getFeatureListLength}`;
 
-        if (featureObject.Image != undefined) {
-            let changeButton = CreateFeatureButtons('change');
-            let deleteButton = CreateFeatureButtons('delete');
-            let swapButton = CreateFeatureButtons('swap');
-            featureDiv.appendChild(changeButton);
-            featureDiv.appendChild(deleteButton);
-            featureDiv.appendChild(swapButton);
-            let Image = document.createElement('img');
-            Image.src = featureObject.Image;
-            Image.classList.add('feature-img', 'someotherclass');
-            featureDiv.appendChild(Image);
-        }
-        
         var Title = document.createElement('strong');
         Title.innerText = featureObject.Title;
         Title.classList.add('feature-description', 'title');
-
         var Description = document.createElement('p');
         Description.innerText = featureObject.Description;
         Description.classList.add('feature-description', 'description');
-        
-        featureDiv.appendChild(Title);
+
+        var buttons = {};
+        if (featureObject.Image != undefined) {
+            //can be made nicer
+            buttons = CreateImageButtons();
+            for(var key of Object.keys(buttons)){ featureDiv.appendChild(buttons[key])}
+            // let changeButton = CreateImageButtons('change');
+            // let deleteButton = CreateImageButtons('delete');
+            // let swapButton = CreateImageButtons('swap');
+            // featureDiv.appendChild(changeButton);
+            // featureDiv.appendChild(deleteButton);
+            // featureDiv.appendChild(swapButton);
+            let Image = document.createElement('img');
+            Image.src = featureObject.Image;
+            Image.classList.add('feature-img');
+            featureDiv.appendChild(Image);
+            featureDiv.appendChild(Title); 
+        }else
+        {
+            //add new buttons without image
+            featureDiv.appendChild(Title);
+            buttons = CreateButtonsWithoutImage();
+            for(var key of Object.keys(buttons)){ featureDiv.appendChild(buttons[key])}           
+        }     
         featureDiv.appendChild(Description);
         return featureDiv;
     }
@@ -240,7 +279,7 @@ confirmCreationButton.addEventListener('click', function CreateFeature()
     featureObject.Description = document.getElementById('new-description-id').value;
     var feature = newFeature(featureObject);
     document.getElementById('feature-list').appendChild(feature);
-    description.Features.set(feature.id, featureObject);  
+    description.Features.set(feature.id, featureObject);
     alert('confirmed');
     HideConfirmBox(addFeatureConfirmDiv);
     console.log(description.Features.entries());
@@ -294,6 +333,7 @@ imageInput.addEventListener('input', function DisplayImage() {
         reader.readAsDataURL(file);
     }else
     {
+        imagePreview.src = '';
         imagePreviewDefaultText.style.display = null;
         imagePreview.style.display = null;
         document.getElementById('image-file-name-id').innerText = 'File name...'

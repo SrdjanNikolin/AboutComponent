@@ -267,6 +267,11 @@ button:focus {
     position: relative;
     font-size: large;
 }
+.mytooltip {
+    padding-left: 6px;
+    padding-right: 6px;
+}
+
 .mytooltip .tooltiptext {
     visibility: hidden;
     width: 120px;
@@ -298,8 +303,27 @@ button:focus {
     opacity: 0.9;
 }
 
+#collapsible-features {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 320;
+}
+
+.section {
+    overflow: hidden;
+    transition:flex 0.3s ease-out;
+    height:auto;
+    flex:1;
+}
+
+.section.collapse {
+    flex: 0;
+}
+
 /* Font awesome styles */
 
 .fa-file-image{
     color: green;
 }
+
