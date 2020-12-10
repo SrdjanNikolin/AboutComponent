@@ -1,3 +1,43 @@
+@mixin FeatureCommonStyles($fontSize) {
+    background-color: 1b2838;
+    width: 100%;
+    margin-bottom: 15px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: #acb2b8;
+    font-size: $fontSize;
+}
+
+@mixin AddAndCancelCommonStyles($backgroundColor) {
+    margin-top: 4px;
+    margin-bottom: 4px;
+    background-color: $backgroundColor;
+    width: 49%;
+}
+
+@mixin ImageButtonsHoverColor($width, $background, $color) {
+    width: $width;
+    background: $background;
+    color: $color;
+}
+
+@mixin FAIconsCommonStyles($color) {
+    position: relative;
+    font-size: large;
+    color: $color;
+    padding-left: 6px;
+    padding-right: 6px;
+}
+
+@keyframes display_Feat {
+    from {
+        max-height: 35px;
+    }
+    to {
+        /* Up for edits, depends on the max height i will allow */
+        max-height: 500px;
+    }
+}
+
 button:focus {
     outline: none;
 }
@@ -7,17 +47,13 @@ button:focus {
     position: relative;
     background-color: #1b2838;
     width: 642px;
+    margin: auto;
 }
 
 .blurAllExcept
 {
     filter: blur(2px) grayscale(70%);
 }
-
-/* .description-content> *:not(#collapse-TextArea-Id)
-{
-    filter: blur(2px) grayscale(70%);
-} */
 
 #description-Body-Id
 {
@@ -32,17 +68,18 @@ button:focus {
     border-bottom: 1px solid;
 }
 
-.feature-description
-{
-    background-color: 1b2838;
-    width: 100%;
-    margin-bottom: 15px;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    color: #acb2b8;
-    font-size: 14px;
+.feature-description{
+    @include FeatureCommonStyles(14px);
 }
 
-.feature-description:hover
+.show-features, #new-feature-button-id{
+    @include FeatureCommonStyles(16px);
+    font-weight: 600;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+.feature-description:hover, .show-features:hover, #new-feature-button-id:hover
 {
     border-radius: 7px;
     cursor: pointer;
@@ -87,54 +124,17 @@ button:focus {
     cursor: pointer;
 }
 
-#add-feature-button
-{
-    /*edit my save button here*/
-    margin-top: 4px;
-    margin-bottom: 4px;
-    background-color: blueviolet;
-    width: 49%;
+#add-feature-button{
+    @include AddAndCancelCommonStyles(green);
 }
 
-#cancel-feature-button
-{
-    /*edit my cancel button here*/
-    margin-top: 4px;
-    margin-bottom: 4px;
-    float: right;
-    background-color: crimson;
-    width: 49%;
+#cancel-feature-button{
+    @include AddAndCancelCommonStyles(grey);
 }
+
 #collapse-TextArea-Id
 {
     position: relative;
-}
-
-/* #confirm-box
-{
-    width: 100px;
-    height: 70px;
-} */
-
-.image-preview-area
-{
-    min-width: 400px;
-    max-width: 600px;
-    max-height: 400px;
-    margin-bottom: 10px;
-    border: 1px solid #acb2b8;
-    background-color: #1b2838;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    color: lightgray;
-}
-
-.image-preview
-{
-    display: none;
-    width: 100%;
 }
 
 .confirm
@@ -214,21 +214,15 @@ button:focus {
 }
 
 .image-buttons.change-feature:hover > .image-button-color {
-    width: 100%;
-    background: rgba(51, 76, 107, 1);
-    color: #acb2b8;
+    @include ImageButtonsHoverColor(100%, rgba(51, 76, 107, 1), #acb2b8);
 }
 
 .image-buttons.delete-feature:hover > .image-button-color {
-    width: 100%;
-    background: rgba(51, 76, 107, 1);
-    color: red;
+    @include ImageButtonsHoverColor(100%, rgba(51, 76, 107, 1), red);
 }
 
 .image-buttons.swap-feature:hover > .image-button-color {
-    width: 100%;
-    background: rgba(51, 76, 107, 1);
-    color: yellow;
+    @include ImageButtonsHoverColor(100%, rgba(51, 76, 107, 1), yellow);
 }
 
 .my-arrow {
@@ -252,24 +246,15 @@ button:focus {
 }
 
 .fa-delete-tip {
-    position: relative;
-    font-size: large;
-    color: red;
+    @include FAIconsCommonStyles(red);
 }
 
 .fa-swap-tip {
-    position: relative;
-    font-size: large;
-    color: rgb(194, 194, 14);
+    @include FAIconsCommonStyles((rgb(194, 194, 14)));
 }
 
 .fa-upload-tip {
-    position: relative;
-    font-size: large;
-}
-.mytooltip {
-    padding-left: 6px;
-    padding-right: 6px;
+    @include FAIconsCommonStyles(rgb(8, 247, 127));
 }
 
 .mytooltip .tooltiptext {
@@ -303,27 +288,13 @@ button:focus {
     opacity: 0.9;
 }
 
-#collapsible-features {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    height: 320;
-}
-
-.section {
+#first-feature{
     overflow: hidden;
-    transition:flex 0.3s ease-out;
-    height:auto;
-    flex:1;
+    max-height: 35px;
 }
 
-.section.collapse {
-    flex: 0;
+.first-feature-show{
+    /* height: auto; */
+    animation: display_Feat 0.5s;
+    animation-fill-mode: forwards;
 }
-
-/* Font awesome styles */
-
-.fa-file-image{
-    color: green;
-}
-

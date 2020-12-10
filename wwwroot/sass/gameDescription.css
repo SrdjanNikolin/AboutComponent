@@ -1,0 +1,317 @@
+@-webkit-keyframes display_Feat {
+  from {
+    max-height: 35px;
+  }
+  to {
+    /* Up for edits, depends on the max height i will allow */
+    max-height: 500px;
+  }
+}
+
+@keyframes display_Feat {
+  from {
+    max-height: 35px;
+  }
+  to {
+    /* Up for edits, depends on the max height i will allow */
+    max-height: 500px;
+  }
+}
+
+button:focus {
+  outline: none;
+}
+
+.about_background {
+  position: relative;
+  background-color: #1b2838;
+  width: 642px;
+  margin: auto;
+}
+
+.blurAllExcept {
+  -webkit-filter: blur(2px) grayscale(70%);
+          filter: blur(2px) grayscale(70%);
+}
+
+#description-Body-Id {
+  -webkit-box-shadow: inset 0 0 70px #000000;
+          box-shadow: inset 0 0 70px #000000;
+}
+
+.about_heading {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  color: whitesmoke;
+  font-size: 16px;
+  border-bottom: 1px solid;
+}
+
+.feature-description {
+  background-color: 1b2838;
+  width: 100%;
+  margin-bottom: 15px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  color: #acb2b8;
+  font-size: 14px;
+}
+
+.show-features, #new-feature-button-id {
+  background-color: 1b2838;
+  width: 100%;
+  margin-bottom: 15px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  color: #acb2b8;
+  font-size: 16px;
+  font-weight: 600;
+  border: 2px solid black;
+  border-radius: 5px;
+}
+
+.feature-description:hover, .show-features:hover, #new-feature-button-id:hover {
+  border-radius: 7px;
+  cursor: pointer;
+  background-color: #334c6b;
+}
+
+.feature-description-edit, .new-description {
+  background-color: 1b2838;
+  height: 250px;
+  width: 100%;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  color: #acb2b8;
+  font-size: 14px;
+}
+
+.white-line-seperate {
+  margin-bottom: 10px;
+  border-bottom: antiquewhite 1px solid;
+  width: 100%;
+}
+
+#image-file-name-id {
+  color: cornsilk;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  background-color: 1b2838;
+}
+
+#image-input {
+  display: none;
+}
+
+#label-image-input {
+  background-color: aliceblue;
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+#add-feature-button {
+  margin-top: 4px;
+  margin-bottom: 4px;
+  background-color: green;
+  width: 49%;
+}
+
+#cancel-feature-button {
+  margin-top: 4px;
+  margin-bottom: 4px;
+  background-color: grey;
+  width: 49%;
+}
+
+#collapse-TextArea-Id {
+  position: relative;
+}
+
+.confirm {
+  position: absolute;
+  display: none;
+  right: 0;
+  bottom: 50%;
+  left: 0;
+  margin: auto;
+  text-align: center;
+  width: 250px;
+  height: 80px;
+  background-color: lightgrey;
+  border-radius: 7px;
+}
+
+.confirm-Creation {
+  margin-top: 5px;
+  font-size: 14;
+}
+
+.confirm-button {
+  margin-bottom: 8px;
+  margin-left: 40px;
+  width: 80px;
+}
+
+.cancel-button {
+  float: right;
+  margin-right: 40px;
+  width: 80px;
+}
+
+.image-buttons {
+  position: absolute;
+  right: 0;
+  display: block;
+  background: transparent;
+  border: 0;
+  width: 30%;
+  height: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.image-buttons.change-feature {
+  white-space: nowrap;
+}
+
+.image-buttons.delete-feature {
+  top: 15%;
+  white-space: nowrap;
+}
+
+.image-buttons.swap-feature {
+  top: 30%;
+  white-space: nowrap;
+}
+
+.image-button-color {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 20%;
+  height: inherit;
+  border-radius: 1rem;
+  position: relative;
+  float: right;
+  overflow: hidden;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: transparent;
+  background: rgba(27, 40, 56, 0.6);
+  -webkit-transition: width 0.4s, background 0.4s, color 0.4s;
+  transition: width 0.4s, background 0.4s, color 0.4s;
+}
+
+.image-buttons.change-feature:hover > .image-button-color {
+  width: 100%;
+  background: #334c6b;
+  color: #acb2b8;
+}
+
+.image-buttons.delete-feature:hover > .image-button-color {
+  width: 100%;
+  background: #334c6b;
+  color: red;
+}
+
+.image-buttons.swap-feature:hover > .image-button-color {
+  width: 100%;
+  background: #334c6b;
+  color: yellow;
+}
+
+.my-arrow {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  position: absolute;
+  right: 0;
+  border: solid green;
+  border-width: 0 7px 7px 0;
+  padding: 5px;
+  -webkit-transform: rotate(135deg);
+          transform: rotate(135deg);
+}
+
+.image-buttons.delete-feature .my-arrow {
+  border: solid red;
+  border-width: 0 7px 7px 0;
+}
+
+.image-buttons.swap-feature .my-arrow {
+  border: solid yellow;
+  border-width: 0 7px 7px 0;
+}
+
+.fa-delete-tip {
+  position: relative;
+  font-size: large;
+  color: red;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+.fa-swap-tip {
+  position: relative;
+  font-size: large;
+  color: #c2c20e;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+.fa-upload-tip {
+  position: relative;
+  font-size: large;
+  color: #08f77f;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+.mytooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: #c6d4df;
+  color: black;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  font-weight: normal;
+  -webkit-box-shadow: 2px 2px 8px black;
+          box-shadow: 2px 2px 8px black;
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  width: 120px;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  -webkit-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+}
+
+.mytooltip:hover {
+  cursor: pointer;
+}
+
+.mytooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 0.9;
+}
+
+#first-feature {
+  overflow: hidden;
+  max-height: 35px;
+}
+
+.first-feature-show {
+  /* height: auto; */
+  -webkit-animation: display_Feat 0.5s;
+          animation: display_Feat 0.5s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+/*# sourceMappingURL=gameDescription.css.map */

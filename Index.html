@@ -1,15 +1,18 @@
+<!doctype html>
+
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <title>Description Area Component</title>   
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="wwwroot/css/site.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="wwwroot/sass/gameDescription.css">
     <script src="https://kit.fontawesome.com/f35b1fe633.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div class="container-fluid" style="background-color: aquamarine;">
-        <h1 id="MyH1">Some text to edit</h1>
-            <div class="card about_background">           
+    <div class="container-fluid" style="background-color: rgb(43, 51, 77);" >
+        <h1 id="MyH1" style="color: blanchedalmond; display: flex; justify-content: center;">My component</h1>
+            <div class="about_background">           
                 <div id="description-Body-Id" class="card-body">                
                     <div class="description-content" style="width: 600px;">
                         <h3 class="about_heading" id="aboutheading">ABOUT THIS GAME</h3>
@@ -17,9 +20,31 @@
                             Edit main description.Edit main description.
                             Edit main description.Edit main description.Edit main description. 
                             Edit main description. Edit main description. Edit main description. Edit main description.Edit main description.Edit main description. Edit main description.Edit main description. Edit main description.Edit main description.Edit main description. Edit main description. Edit main description. Edit main description. Edit main description.Edit main description.Edit main description. Edit main description.Edit main description. Edit main description.Edit main description.Edit main description. </p>
-                        <p class="feature-description" style="border-bottom: 1px solid; width: fit-content;">Key features: collapse here</p>
-                        <div id="collapsible-features" class="feature-description">Features!
-                            <div class="section collapse">Raaaandom text Raaaandom text Raaaandom text Raaaandom text Raaaandom text Raaaandom text Raaaandom text Raaaandom text Raaaandom text Raaaandom text Raaaandom text Raaaandom text
+                        <!-- <p class="feature-description" style="border-bottom: 1px solid; width: fit-content;">Key features: collapse here</p> -->
+                        <button type="button" id="toggle-elements-button" class="btn btn-block collapsed show-features" data-bs-toggle="collapse" data-bs-target="#collapsible-features">Toggle elements</button>
+                        <!-- <div id="first-feature" class="sectioncollapse" style="color: yellow;">Raaaandom text Raaaandom text Raaaandom text Raaaandom text Raaaandom text Raaaandom text Raaaandom text Raaaandom text Raaaandom text Raaaandom text Raaaandom text Raaaandom text
+                            Raaaandom text Raaaandom text Raaaandom text Raaaandom text Raaaandom text Raaaandom text Raaaandom text Raaaandom text Raaaandom text Raaaandom text Raaaandom text Raaaandom text
+                        </div> -->
+                        <div id="first-feature" class="temp feature-1">   
+                            <img src="./wwwroot/Images/remparts.gif" class="feature-img">
+                            <strong class="feature-description title">Feature 1 title</strong>
+                            <p class="feature-description description">Feature 1 description. Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem eveniet at iste, quasi exercitationem inventore deleniti atque quia eius ex voluptatibus placeat distinctio sit architecto eaque incidunt reiciendis unde aut.</p>
+                        </div> 
+                        <div id="collapsible-features" class="collapse" style="color: yellow;">Features!
+                            <div class="temp feature-1">   
+                                <img src="./wwwroot/Images/remparts.gif" class="feature-img">
+                                <strong class="feature-description title">Feature 1 title</strong>
+                                <p class="feature-description description">Feature 1 description. Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem eveniet at iste, quasi exercitationem inventore deleniti atque quia eius ex voluptatibus placeat distinctio sit architecto eaque incidunt reiciendis unde aut.</p>
+                            </div> 
+                            <div class="temp feature-1">   
+                                <img src="./wwwroot/Images/remparts.gif" class="feature-img">
+                                <strong class="feature-description title">Feature 1 title</strong>
+                                <p class="feature-description description">Feature 1 description. Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem eveniet at iste, quasi exercitationem inventore deleniti atque quia eius ex voluptatibus placeat distinctio sit architecto eaque incidunt reiciendis unde aut.</p>
+                            </div> 
+                            <div class="sectioncollapse">Raaaandom text Raaaandom text Raaaandom text Raaaandom text Raaaandom text Raaaandom text Raaaandom text Raaaandom text Raaaandom text Raaaandom text Raaaandom text Raaaandom text
+                                Raaaandom text Raaaandom text Raaaandom text Raaaandom text Raaaandom text Raaaandom text Raaaandom text Raaaandom text Raaaandom text Raaaandom text Raaaandom text Raaaandom text
+                            </div>
+                            <div class="sectioncollapse">Raaaandom text Raaaandom text Raaaandom text Raaaandom text Raaaandom text Raaaandom text Raaaandom text Raaaandom text Raaaandom text Raaaandom text Raaaandom text Raaaandom text
                                 Raaaandom text Raaaandom text Raaaandom text Raaaandom text Raaaandom text Raaaandom text Raaaandom text Raaaandom text Raaaandom text Raaaandom text Raaaandom text Raaaandom text
                             </div>
                         </div>
@@ -36,9 +61,9 @@
                             </div>                 
                             <br>
                             <div class="temp feature-2">
-                                <!-- <img src="./wwwroot/Images/remparts.gif" class="feature-img"> -->
+                                <img src="./wwwroot/Images/remparts.gif" class="feature-img">
                                 <strong class="feature-description title">Feature 2 title</strong>
-                                <!-- <span class="far fa-trash-alt fa-delete-tip mytooltip">
+                                    <span class="far fa-trash-alt fa-delete-tip mytooltip"> 
                                     <span class="tooltiptext">Delete</span>
                                 </span>
                                 <span class="fas fa-exchange-alt fa-swap-tip mytooltip">
@@ -46,10 +71,10 @@
                                 </span>
                                 <span class="far fa-file-image fa-upload-tip mytooltip">
                                     <span class="tooltiptext">Upload image</span>
-                                </span> -->
+                                </span>
                                 <p class="feature-description description">Feature 2 description. Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem eveniet at iste, quasi exercitationem inventore deleniti atque quia eius ex voluptatibus placeat distinctio sit architecto eaque incidunt reiciendis unde aut.</p>
                             </div>  
-                            <br>
+                            <br> -->
                         </div>
                         <div id="collapse-TextArea-Id" class="collapse">                       
                             <div id="confirm-feature" class="confirm">
@@ -73,7 +98,7 @@
                             <button id="add-feature-button">Add feature</button>
                             <button id="cancel-feature-button">Cancel</button>
                         </div>
-                        <button type="button" id="new-feature-button-id" class="btn btn-block" style="background-color: 538acf; color: whitesmoke;" data-toggle="collapse" data-target="#collapse-TextArea-Id" aria-expanded="false" aria-controls="collapseExample">New Feature</button>                     
+                        <button type="button" id="new-feature-button-id" class="btn btn-block" data-bs-toggle="collapse" data-bs-target="#collapse-TextArea-Id">New Feature</button>                     
                         <div class="temp feature-3" id="feature3" style="position: relative;">                           
                             <button class="image-buttons change-feature">                          
                                 <div class="image-button-color change-feature">
@@ -90,7 +115,7 @@
                             <button class="image-buttons swap-feature">                          
                                 <div class="image-button-color swap-feature">
                                     <div class="my-arrow"></div>
-                                        Swap with feature
+                                    Swap with feature
                                 </div>                            
                             </button>
                             <img src="./wwwroot/Images/remparts.gif" class="feature-img">
@@ -101,7 +126,7 @@
                 </div>                   
             </div>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="wwwroot/js/gameDescription.js" type="module"></script>
 </body>

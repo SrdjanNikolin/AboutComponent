@@ -24,7 +24,8 @@ var deleteFeatureDiv = document.getElementById('confirm-delete');
 var deleteButton = document.getElementById('delete-button-id');
 var cancelDeleteButton = document.getElementById('cancel-delete-button-id');
 var myheading = document.getElementById('aboutheading');
-
+var firstFeature = document.getElementById('first-feature');
+var toggleElementsButton = document.getElementById('toggle-elements-button');
 //for easy testing
 document.getElementById('MyH1').addEventListener('click', ()=> {
     document.querySelector('.section').classList.toggle('collapse');
@@ -287,7 +288,7 @@ confirmCreationButton.addEventListener('click', function CreateFeature()
 
 abortCreationButton.addEventListener('click', () => HideConfirmBox(addFeatureConfirmDiv));
 
-cancelDeleteButton.addEventListener('click', () => HideConfirmBox(deleteFeatureDiv));
+// cancelDeleteButton.addEventListener('click', () => HideConfirmBox(deleteFeatureDiv));
 
 descriptionBody.addEventListener('click', function UpdateCurrentFeature(ev)
 {
@@ -340,6 +341,9 @@ imageInput.addEventListener('input', function DisplayImage() {
     }               
 });
 
+toggleElementsButton.addEventListener('click', () => {
+    firstFeature.classList.toggle('first-feature-show');
+})
 
 collapseArea.on('show.bs.collapse', function CollapseArea()
 {
